@@ -6,21 +6,15 @@
       <link rel="stylesheet" href="Selenium%20automation%20test%20page_files/bootstrap.css">
   <script src="Selenium%20automation%20test%20page_files/jquery.js"></script>
   <script src="Selenium%20automation%20test%20page_files/bootstrap.js"></script>
-    
-    
 <script type="text/javascript">
-
-
-/*$(document).ready(function () {
-	$('#ajax_button_id').click(function () {  
-			$.ajax({url: "http://example.com/", success: function(result){
-				$("#ajax_id").html(result);
-			}});
-		});
-		alert( "Handler for .click() called." );
-	});
-	
-});*/
+$(document).ready(function () {
+    $('#ajax_button_id').click(function () {
+        const delay = Math.floor(Math.random() * 8000) + 2000;
+        setTimeout(function () {
+            $("#ajax_id").html("<h2>Dynamic content loaded</h2>");
+        }, delay);
+    });
+});
 </script>
 <script>
 function alertFunction() {
