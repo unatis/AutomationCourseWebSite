@@ -6,7 +6,84 @@
       <link rel="stylesheet" href="Selenium%20automation%20test%20page_files/bootstrap.css">
   <script src="Selenium%20automation%20test%20page_files/jquery.js"></script>
   <script src="Selenium%20automation%20test%20page_files/bootstrap.js"></script>
-<script type="text/javascript">
+
+	<script>
+    const canvas = document.getElementById("myChart");
+    const ctx = canvas.getContext("2d");
+
+    const data = [
+        { label: "Jan", value: 120 },
+        { label: "Feb", value: 180 },
+        { label: "Mar", value: 90 },
+        { label: "Apr", value: 240 },
+        { label: "May", value: 160 },
+        { label: "Jun", value: 300 }
+    ];
+
+    const chartWidth = canvas.width;
+    const chartHeight = canvas.height;
+
+    const padding = 50;
+    const maxValue = Math.max(...data.map(item => item.value));
+
+    const barWidth = 60;
+    const gap = 30;
+
+    // Очистка canvas
+    ctx.clearRect(0, 0, chartWidth, chartHeight);
+
+    // Заголовок оси Y
+    ctx.font = "14px Arial";
+    ctx.fillStyle = "#333";
+
+    // Рисуем оси
+    ctx.beginPath();
+    ctx.moveTo(padding, padding);
+    ctx.lineTo(padding, chartHeight - padding);
+    ctx.lineTo(chartWidth - padding, chartHeight - padding);
+    ctx.strokeStyle = "#333";
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Горизонтальные линии и значения
+    const steps = 5;
+
+    for (let i = 0; i <= steps; i++) {
+        const value = Math.round((maxValue / steps) * i);
+        const y = chartHeight - padding - (value / maxValue) * (chartHeight - padding * 2);
+
+        ctx.fillStyle = "#333";
+        ctx.fillText(value, 10, y + 5);
+
+        ctx.beginPath();
+        ctx.moveTo(padding, y);
+        ctx.lineTo(chartWidth - padding, y);
+        ctx.strokeStyle = "#e0e0e0";
+        ctx.lineWidth = 1;
+        ctx.stroke();
+    }
+
+    // Рисуем столбцы
+    data.forEach((item, index) => {
+        const x = padding + gap + index * (barWidth + gap);
+        const barHeight = (item.value / maxValue) * (chartHeight - padding * 2);
+        const y = chartHeight - padding - barHeight;
+
+        // Столбец
+        ctx.fillStyle = "#4e79a7";
+        ctx.fillRect(x, y, barWidth, barHeight);
+
+        // Значение над столбцом
+        ctx.fillStyle = "#333";
+        ctx.font = "13px Arial";
+        ctx.fillText(item.value, x + 15, y - 8);
+
+        // Подпись снизу
+        ctx.fillText(item.label, x + 18, chartHeight - padding + 25);
+    });
+</script>
+	
+	<script type="text/javascript">
 $(document).ready(function () {
     $('#ajax_button_id').click(function () {
         const delay = Math.floor(Math.random() * 8000) + 2000;
@@ -57,6 +134,26 @@ function alertFunction() {
 	
 
   </style>
+
+	<style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            background: #f5f5f5;
+        }
+
+        .chart-container {
+            width: 700px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        canvas {
+            border: 1px solid #ddd;
+        }
+    </style>
 
 <style class="firebugResetStyles" type="text/css" charset="utf-8">/* See license.txt for terms of usage */
 
@@ -609,6 +706,14 @@ Password: <input name="password" type="password">
   style="fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd;" />
 Sorry, your browser does not support inline SVG.
 </svg>	
+</div>
+
+<br>
+<br>
+
+<div class="chart-container">
+<h2>Sales Chart</h2>
+<canvas id="myChart" width="650" height="400"></canvas>
 </div>
 	
 </div>
