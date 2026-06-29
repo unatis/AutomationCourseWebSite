@@ -1,4 +1,5 @@
-<html xmlns=""><head>
+<html xmlns="">
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 <title>Selenium automation test page</title>
 <link rel="stylesheet" type="text/css" href="Selenium%20automation%20test%20page_files/style.css">
@@ -325,7 +326,32 @@ style.firebugResetStyles {
 
 }
 
-</style><style id="firepath-matching-node-style" type="text/css">.firepath-matching-node {	outline: 2px dashed #00F;}</style></head>
+</style><style id="firepath-matching-node-style" type="text/css">.firepath-matching-node {	outline: 2px dashed #00F;}</style>
+
+<style>
+#div1 {
+  width: 350px;
+  height: 70px;
+  padding: 10px;
+  border: 1px solid #aaaaaa;
+}
+</style>
+<script>
+function dragstartHandler(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function dragoverHandler(ev) {
+  ev.preventDefault();
+}
+
+function dropHandler(ev) {
+  ev.preventDefault();
+  const data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+}
+</script>
+</head>
 <body>
 
   
@@ -642,7 +668,22 @@ Your browser does not support the audio element.
 		<iframe width="420" height="315"
 src="https://www.youtube.com/embed/jNQXAC9IVRw?autoplay=0&mute=1">
 </iframe>
-		</div>
+</div>
+
+	<br>
+<br>
+
+	<div>
+<h1>Drag and Drop API</h1>
+
+<p>Drag the W3Schools image into the rectangle:</p>
+
+<div id="div1" ondrop="dropHandler(event)"   ondragover="dragoverHandler(event)"></div>
+<br>
+<img id="img1" src="img_logo.gif" draggable="true" ondragstart="dragstartHandler(event)" width="336" height="69">
+
+</div>
+
 </div>
 
 
