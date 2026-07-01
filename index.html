@@ -685,8 +685,72 @@ src="https://www.youtube.com/embed/jNQXAC9IVRw?autoplay=0&mute=1">
 
 </div>
 
+	<section>
+  <h2>Scroll Examples</h2>
+  <h3>Page Scroll</h3>
+  <div style="height: 600px; background: #f5f5f5;">
+    Scroll down to find button
+  </div>
+  <button id="page_scroll_button">Page Scroll Button</button>
+  <h3>Container Scroll</h3>
+  <div
+    id="scroll_container"
+    style="width: 300px; height: 150px; overflow: auto; border: 1px solid black;"
+  >
+    <div style="width: 700px; height: 500px; position: relative;">
+      <button
+        id="container_scroll_button"
+        style="position: absolute; right: 20px; bottom: 20px;"
+      >
+        Container Scroll Button
+      </button>
+    </div>
+  </div>
+</section>
+<section>
+  <h2>Shadow DOM Examples</h2>
+  <div id="open_shadow_host"></div>
+  <div id="closed_shadow_host"></div>
+</section>
+
 </div>
 
+	<script>
+  const openHost = document.getElementById('open_shadow_host');
+  const openShadow = openHost.attachShadow({ mode: 'open' });
+  openShadow.innerHTML = `
+    <style>
+      .box {
+        margin-top: 20px;
+        padding: 16px;
+        border: 2px solid green;
+        background: #eaffea;
+      }
+    </style>
+    <div class="box">
+      <h3>Open Shadow Root</h3>
+      <p id="open_shadow_text">Text inside open shadow root</p>
+      <button id="open_shadow_button">Open Shadow Button</button>
+    </div>
+  `;
+  const closedHost = document.getElementById('closed_shadow_host');
+  const closedShadow = closedHost.attachShadow({ mode: 'closed' });
+  closedShadow.innerHTML = `
+    <style>
+      .box {
+        margin-top: 20px;
+        padding: 16px;
+        border: 2px solid red;
+        background: #ffecec;
+      }
+    </style>
+    <div class="box">
+      <h3>Closed Shadow Root</h3>
+      <p id="closed_shadow_text">Text inside closed shadow root</p>
+      <button id="closed_shadow_button">Closed Shadow Button</button>
+    </div>
+  `;
+</script>
 
 	<script>
     const canvas = document.getElementById("myChart");
