@@ -715,7 +715,7 @@ src="https://www.youtube.com/embed/jNQXAC9IVRw?autoplay=0&mute=1">
 
 </div>
 
-	<script>
+<script>
   const closedHost = document.getElementById('closed_shadow_host');
   const closedShadow = closedHost.attachShadow({ mode: 'closed' });
   closedShadow.innerHTML = `
@@ -726,6 +726,10 @@ src="https://www.youtube.com/embed/jNQXAC9IVRw?autoplay=0&mute=1">
         border: 2px solid red;
         background: #ffecec;
       }
+      .success {
+        color: red;
+        font-weight: bold;
+      }
     </style>
     <div class="box">
       <h3>Closed Shadow Root</h3>
@@ -733,6 +737,13 @@ src="https://www.youtube.com/embed/jNQXAC9IVRw?autoplay=0&mute=1">
       <button id="closed_shadow_button">Closed Shadow Button</button>
     </div>
   `;
+  closedShadow
+    .getElementById('closed_shadow_button')
+    .addEventListener('click', () => {
+      const text = closedShadow.getElementById('closed_shadow_text');
+      text.textContent = 'Closed кнопка нажата успешно';
+      text.classList.add('success');
+    });
 </script>
 
 	<script>
