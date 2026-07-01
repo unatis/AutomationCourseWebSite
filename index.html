@@ -716,6 +716,34 @@ src="https://www.youtube.com/embed/jNQXAC9IVRw?autoplay=0&mute=1">
 </div>
 
 <script>
+  const openHost = document.getElementById('open_shadow_host');
+  const openShadow = openHost.attachShadow({ mode: 'open' });
+  openShadow.innerHTML = `
+    <style>
+      .box {
+        margin-top: 20px;
+        padding: 16px;
+        border: 2px solid green;
+        background: #eaffea;
+      }
+      .success {
+        color: green;
+        font-weight: bold;
+      }
+    </style>
+    <div class="box">
+      <h3>Open Shadow Root</h3>
+      <p id="open_shadow_text">Text inside open shadow root</p>
+      <button id="open_shadow_button">Open Shadow Button</button>
+    </div>
+  `;
+  openShadow
+    .getElementById('open_shadow_button')
+    .addEventListener('click', () => {
+      const text = openShadow.getElementById('open_shadow_text');
+      text.textContent = 'Open кнопка нажата успешно';
+      text.classList.add('success');
+    });
   const closedHost = document.getElementById('closed_shadow_host');
   const closedShadow = closedHost.attachShadow({ mode: 'closed' });
   closedShadow.innerHTML = `
