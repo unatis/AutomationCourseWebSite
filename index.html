@@ -710,40 +710,29 @@ src="https://www.youtube.com/embed/jNQXAC9IVRw?autoplay=0&mute=1">
 <section>
   <h2>Shadow DOM Examples</h2>
   <div id="open_shadow_host"></div>
-  <div id="closed_shadow_host"></div>
-	
+  <div id="closed_shadow_host"></div>	
 </section>
 
 </div>
 
 	<script>
-  const openHost = document.getElementById('open_shadow_host');
-  const openShadow = openHost.attachShadow({ mode: 'open' });
-  openShadow.innerHTML = `
+  const closedHost = document.getElementById('closed_shadow_host');
+  const closedShadow = closedHost.attachShadow({ mode: 'closed' });
+  closedShadow.innerHTML = `
     <style>
       .box {
         margin-top: 20px;
         padding: 16px;
-        border: 2px solid green;
-        background: #eaffea;
-      }
-      .success {
-        color: green;
-        font-weight: bold;
+        border: 2px solid red;
+        background: #ffecec;
       }
     </style>
     <div class="box">
-      <h3>Open Shadow Root</h3>
-      <p id="open_shadow_text">Text inside open shadow root</p>
-      <button id="open_shadow_button">Open Shadow Button</button>
+      <h3>Closed Shadow Root</h3>
+      <p id="closed_shadow_text">Text inside closed shadow root</p>
+      <button id="closed_shadow_button">Closed Shadow Button</button>
     </div>
   `;
-  const openShadowButton = openShadow.getElementById('open_shadow_button');
-  const openShadowText = openShadow.getElementById('open_shadow_text');
-  openShadowButton.addEventListener('click', () => {
-    openShadowText.textContent = 'Кнопка нажата успешно';
-    openShadowText.classList.add('success');
-  });
 </script>
 
 	<script>
